@@ -1,0 +1,28 @@
+services:
+  postgres_pma:
+    image: postgres:17.0-alpine
+    container_name: postgres_pma
+    env_file:
+      - .env
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - 5432:5432
+  
+  postgrest:
+    container_name: postgrest
+    image: postgrest/postgrest:latest
+    ports:
+      - "3030:3000"
+    environment:
+      - PGRST_DB_URI=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres_pma:${PGPORT}/${POSTGRES_DB}
+      - PGRST_DB_SCHEMA=public
+      - PGRST_DB_ANON_ROLE=exampleUser
+    restart: always
+volumes:
+  postgresql_data:

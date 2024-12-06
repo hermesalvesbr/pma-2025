@@ -1,0 +1,36 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model Despesa {
+    id                  String @id @default(uuid())
+    tipo                String
+    numero              Int
+    emissao             String
+    especie             String
+    categoria           String
+    objetoResumido      String
+    classificacao       String
+    funcao              String
+    subfuncao           String
+    programa            String
+    acao                String
+    categoriaEconomica  String
+    grupo               String
+    modalidadeAplicacao String
+    elemento            String
+    detalhamento        String
+    fonteRecurso        String
+    exercicio           Int
+    unidadeOrcamentaria String
+    unidadeGestora      String
+    fornecedor          String
+    cpfCnpj             String
+    valorTotal          Float
+    codigoUnidade       Int?
+}
