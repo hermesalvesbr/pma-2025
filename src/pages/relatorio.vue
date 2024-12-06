@@ -45,6 +45,8 @@ const filters = ref({
   unidadeGestora: '',
 })
 
+const loading = ref(false)
+
 async function fetchEmpenhos() {
   try {
     const API_URL = import.meta.env.VITE_API_URL
@@ -94,7 +96,13 @@ function handleRowClick(item: Despesa) {
 
 async function initialize() {
   search.value = null
-  empenhos.value = await fetchEmpenhos()
+  loading.value = true
+  try {
+    empenhos.value = await fetchEmpenhos()
+  }
+  finally {
+    loading.value = false
+  }
 }
 
 const filteredEmpenhos = computed(() =>
@@ -203,4 +211,9 @@ watch(filters, () => {
       {{ formatCurrency(value) }}
     </template>
   </v-data-table>
+  <v-progress-linear
+    v-if="loading"
+    color="blue-lighten-3"
+    indeterminate
+  />
 </template>
