@@ -16,6 +16,11 @@ useHead({
     { name: 'twitter:description', content: 'Softagon Sistemas - Soluções inovadoras para gestão pública e privada.' },
     { name: 'twitter:image', content: 'https://softagon.com.br/images/logos/softagon-sistemas-logo.svg' },
   ],
+  link: [
+    { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' },
+    { rel: 'apple-touch-icon', href: '/softagon.png' },
+    { rel: 'manifest', href: '/site.webmanifest' },
+  ],
 })
 </script>
 
