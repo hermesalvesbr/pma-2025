@@ -1,3 +1,24 @@
+<script lang="ts" setup>
+import { useHead } from '@unhead/vue'
+
+useHead({
+  title: 'Softagon Sistemas',
+  meta: [
+    { name: 'description', content: 'Softagon Sistemas - Soluções inovadoras para gestão pública e privada.' },
+    { name: 'keywords', content: 'Softagon, Sistemas, Gestão, Pública, Privada, Inovação, Tecnologia' },
+    { name: 'author', content: 'Softagon Sistemas' },
+    { property: 'og:title', content: 'Softagon Sistemas' },
+    { property: 'og:description', content: 'Softagon Sistemas - Soluções inovadoras para gestão pública e privada.' },
+    { property: 'og:image', content: 'https://softagon.com.br/images/logos/softagon-sistemas-logo.svg' },
+    { property: 'og:url', content: 'https://softagon.com.br' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Softagon Sistemas' },
+    { name: 'twitter:description', content: 'Softagon Sistemas - Soluções inovadoras para gestão pública e privada.' },
+    { name: 'twitter:image', content: 'https://softagon.com.br/images/logos/softagon-sistemas-logo.svg' },
+  ],
+})
+</script>
+
 <template>
   <v-app>
     <v-main>
@@ -5,7 +26,3 @@
     </v-main>
   </v-app>
 </template>
-
-<script lang="ts" setup>
-  //
-</script>
