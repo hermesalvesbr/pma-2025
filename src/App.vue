@@ -18,7 +18,7 @@ useHead({
   ],
   link: [
     { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' },
-    { rel: 'apple-touch-icon', href: '/softagon.png' },
+    { rel: 'apple-touch-icon', href: '/softagon.svg' },
     { rel: 'manifest', href: '/site.webmanifest' },
   ],
 })
