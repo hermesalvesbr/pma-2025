@@ -146,10 +146,6 @@ const totalValor = computed(() => {
 onMounted(async () => {
   initialize()
 })
-
-watch(filters, () => {
-  initialize()
-}, { deep: true })
 </script>
 
 <template>
