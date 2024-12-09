@@ -178,11 +178,13 @@ function calcularTotalMovimentos(movimentos: Movimento[]): number {
     <div class="d-flex justify-center pt-4">
       <v-btn
         class="mr-5"
+        href="/relatorio"
       >
         Empenhos
       </v-btn>
       <v-btn
         class="mr-5"
+        href="/folha"
       >
         Folha
       </v-btn>
