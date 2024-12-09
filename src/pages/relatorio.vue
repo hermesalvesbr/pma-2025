@@ -97,6 +97,11 @@ function handleRowClick(item: Despesa) {
 async function initialize() {
   search.value = null
   loading.value = true
+  filters.value = {
+    tipo: '',
+    unidadeOrcamentaria: '',
+    unidadeGestora: '',
+  }
   try {
     empenhos.value = await fetchEmpenhos()
   }
@@ -128,8 +133,14 @@ const uniqueManagers = computed(() => [
 ])
 
 function formatCurrency(value: number): string {
+  if (value === undefined || value === null)
+    return 'R$ 0,00'
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
+
+const totalValor = computed(() => {
+  return filteredEmpenhos.value.reduce((sum, item) => sum + item.valorTotal, 0)
+})
 
 // Inicialização dos dados
 onMounted(async () => {
@@ -209,6 +220,11 @@ watch(filters, () => {
     </template>
     <template #item.valorTotal="{ value }">
       {{ formatCurrency(value) }}
+    </template>
+    <template #footer.prepend>
+      <div class="mr-4">
+        SOMA R$ {{ formatCurrency(totalValor) }}
+      </div>
     </template>
   </v-data-table>
   <v-progress-linear

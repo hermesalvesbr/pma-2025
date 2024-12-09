@@ -34,3 +34,28 @@ model Despesa {
     valorTotal          Float
     codigoUnidade       Int?
 }
+
+model Folha {
+    id                   String    @id @default(uuid())
+    unidadeGestoraCodigo Int
+    unidadeGestoraNome   String
+    matriculaNumero      String
+    matriculaCpf         String
+    matriculaNome        String
+    dataAdmissao         DateTime?
+    tipoContratacao      String?
+    vinculo              String
+    localNome            String
+    local                String?
+    cargoCodigo          String
+    cargoNome            String
+    funcaoNome           String?
+    nrHorasSemanais      Float
+    estruturaClasse      String?
+    estruturaNivel       String?
+    salarioBase          Float
+    totalVantagens       Float
+    totalDescontos       Float
+    criadoEm             DateTime  @default(now())
+    atualizadoEm         DateTime  @updatedAt
+}
