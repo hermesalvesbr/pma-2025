@@ -49,7 +49,7 @@ const loading = ref(false)
 
 async function fetchEmpenhos() {
   try {
-    const API_URL = import.meta.env.VITE_API_URL
+    const API_URL = `${import.meta.env.VITE_API_URL}/Despesa`
     const response = await fetch(API_URL)
     if (!response.ok) {
       throw new Error('Erro ao buscar dados')
@@ -139,7 +139,24 @@ function formatCurrency(value: number): string {
 }
 
 const totalValor = computed(() => {
-  return filteredEmpenhos.value.reduce((sum, item) => sum + item.valorTotal, 0)
+  const searchTerm = search.value ? search.value.toLowerCase() : ''
+
+  return empenhos.value
+    .filter((item) => {
+      const matchesFilters
+        = (!filters.value.tipo || item.tipo === filters.value.tipo)
+        && (!filters.value.unidadeOrcamentaria || item.unidadeOrcamentaria === filters.value.unidadeOrcamentaria)
+        && (!filters.value.unidadeGestora || item.unidadeGestora === filters.value.unidadeGestora)
+
+      const matchesSearch = searchTerm
+        ? Object.values(item).some(value =>
+          value && value.toString().toLowerCase().includes(searchTerm),
+        )
+        : true
+
+      return matchesFilters && matchesSearch
+    })
+    .reduce((sum, item) => sum + item.valorTotal, 0)
 })
 
 // Inicialização dos dados
@@ -219,7 +236,7 @@ onMounted(async () => {
     </template>
     <template #footer.prepend>
       <div class="mr-4">
-        SOMA R$ {{ formatCurrency(totalValor) }}
+        SOMA  {{ formatCurrency(totalValor) }}
       </div>
     </template>
   </v-data-table>

@@ -175,6 +175,18 @@ function calcularTotalMovimentos(movimentos: Movimento[]): number {
 
 <template>
   <v-app>
+    <div class="d-flex justify-center pt-4">
+      <v-btn
+        class="mr-5"
+      >
+        Empenhos
+      </v-btn>
+      <v-btn
+        class="mr-5"
+      >
+        Folha
+      </v-btn>
+    </div>
     <v-container>
       <v-card class="mb-5">
         <v-card-title>Consulta de Despesas - Transparência Pública</v-card-title>
